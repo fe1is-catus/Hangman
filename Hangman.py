@@ -28,7 +28,7 @@ import random
 
 print ("H A N G M A N")
 answers = ['python', 'java', 'kotlin', 'javascript']
-rigt_answer = random.choice(answers)
+right_answer = random.choice(answers)
 hidden_symbols = '-' * (len(rigt_answer) - 3)
 help_user = rigt_answer[0] + rigt_answer[1] + rigt_answer[2] + hidden_symbols
 
@@ -37,3 +37,31 @@ if user_guess == rigt_answer:
     print ("You survived!")
 else:
     print ("You are hanged!")
+
+
+#5/8: Keep trying
+import random
+
+print("H A N G M A N")
+print()
+answers = ['python', 'java', 'kotlin', 'javascript']
+right_answer = random.choice(answers)
+
+dashes = list('-'*len(right_answer))
+
+attempt = 0
+while attempt < 8:
+    string = "".join(dashes)
+    print(string)
+    user_guess_letter = input('Input a letter : ')
+    if user_guess_letter in right_answer:
+        for i in range(len(right_answer)):
+            if user_guess_letter == right_answer[i]:
+                dashes[i] = user_guess_letter
+    else:
+        print("No such letter in the word")
+    print("\n")
+    attempt += 1
+
+print('''Thanks for playing!
+We'll see how well you did in the next stage''')
