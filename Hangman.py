@@ -149,3 +149,59 @@ while attempt < 8:
 
 if dashes != right_answer:
     print("You are hanged!")
+
+#Stage 8/8: Menu, please
+import random
+
+print("H A N G M A N")
+
+def game_start():
+    answers = ['python', 'java', 'kotlin', 'javascript']
+    right_answer = random.choice(answers)
+    dashes = list('-'*len(right_answer))
+    user_guess_letters = []
+    eng_lowc_letter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    attempt = 0
+    
+    while attempt < 8:
+        print()
+        string = "".join(dashes)
+        print(string)
+                
+        if string == right_answer:
+            print("You guessed the word!")
+            print("You survived!")
+            break
+        
+        user_guess_letter = input('Input a letter:')
+        
+        if len(user_guess_letter) != 1:
+            print("You should input a single letter")
+        
+        elif user_guess_letter not in eng_lowc_letter:
+            print("It is not an ASCII lowercase letter")
+        
+        elif user_guess_letter in user_guess_letters:
+            print('You already typed this letter')
+                
+        elif user_guess_letter in right_answer:
+            user_guess_letters.append(user_guess_letter)
+            for i in range(len(right_answer)):
+                if user_guess_letter == right_answer[i]:
+                    dashes[i] = user_guess_letter
+            
+        else:
+            user_guess_letters.append(user_guess_letter)
+            print("No such letter in the word")
+            attempt += 1
+
+    if string != right_answer:
+        print("You lost!")
+
+def menu():
+    user_choise = input('Type "play" to play the game, "exit" to quit:')
+    if user_choise == "play":
+        game_start()
+    else:
+        menu()
+menu()
